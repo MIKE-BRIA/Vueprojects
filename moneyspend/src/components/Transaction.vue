@@ -2,9 +2,9 @@
   <div class="submition">
     <h3>Add new transaction</h3>
     <hr />
-    <form action="" @submit.prevent="onSubmit">
+    <form @submit.prevent="onSubmit">
       <div class="text">
-        <label for="">Text</label>
+        <label>Text</label>
         <input
           type="text"
           id="text"
@@ -14,7 +14,7 @@
       </div>
 
       <div class="amount">
-        <label for="">
+        <label>
           Amount
           <br />
           (Positive -income, Negative -expense)
