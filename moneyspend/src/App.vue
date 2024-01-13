@@ -4,7 +4,10 @@
     <div class="container">
       <Balance :balance="+balance"></Balance>
       <IncomeExp :income="+income" :expense="expense"></IncomeExp>
-      <History :transactions="transactions"></History>
+      <History
+        :transactions="transactions"
+        @deletetransaction="deletetrn"
+      ></History>
       <Transaction @transactionSubmitted="handleTransaction"></Transaction>
     </div>
   </div>
@@ -16,20 +19,18 @@ import Balance from "./components/Balance.vue";
 import IncomeExp from "./components/IncomeExp.vue";
 import History from "./components/History.vue";
 import Transaction from "./components/Transaction.vue";
-import { computed, ref } from "vue";
 
-const transactions = ref([
-  { id: 1, text: "Tea", Amount: -230 },
-  { id: 2, text: "Coffee", Amount: -230 },
-  { id: 3, text: "Tea", Amount: 2000 },
-  { id: 4, text: "Tea", Amount: 2309 },
-  { id: 5, text: "Tea", Amount: -230 },
-]);
+import { computed, ref } from "vue";
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
+
+const transactions = ref([]);
 
 //get balance
 const balance = computed(() => {
   return transactions.value.reduce((acc, transction) => {
-    return acc + transction.Amount;
+    return acc + transction.amount;
   }, 0);
 });
 
@@ -37,9 +38,9 @@ const balance = computed(() => {
 
 const income = computed(() => {
   return transactions.value
-    .filter((transaction) => transaction.Amount > 0)
+    .filter((transaction) => transaction.amount > 0)
     .reduce((acc, transaction) => {
-      return acc + transaction.Amount;
+      return acc + transaction.amount;
     }, 0)
     .toFixed(2);
 });
@@ -48,9 +49,9 @@ const income = computed(() => {
 
 const expense = computed(() => {
   return transactions.value
-    .filter((transaction) => transaction.Amount < 0)
+    .filter((transaction) => transaction.amount < 0)
     .reduce((acc, transaction) => {
-      return acc + transaction.Amount;
+      return acc + transaction.amount;
     }, 0)
     .toFixed(2);
 });
@@ -58,12 +59,15 @@ const expense = computed(() => {
 //adding new transactions
 
 const handleTransaction = (transactiondata) => {
-  if (text.value || Amount.value) {
+  if (text.value && amount.value) {
     transactions.value.push({
       id: generateUniqueId(),
       text: transactiondata.text,
-      Amount: transactiondata.amount,
+      amount: transactiondata.amount,
     });
+    toast.success("transaction added successfully");
+  } else {
+    toast.error("Add both fields");
   }
 };
 
@@ -71,6 +75,14 @@ const handleTransaction = (transactiondata) => {
 
 const generateUniqueId = () => {
   return Math.floor(Math.random() * 1000000);
+};
+
+//deletetransaction
+
+const deletetrn = (id) => {
+  transactions.value = transactions.value.filter(
+    (transaction) => transaction.id !== id
+  );
 };
 </script>
 
