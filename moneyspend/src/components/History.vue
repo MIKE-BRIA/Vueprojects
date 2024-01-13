@@ -4,7 +4,11 @@
     <hr />
     <time datetime=" ">time</time>"
     <ul class="list">
-      <li v-for="transaction in transactions" :key="transaction.id">
+      <li
+        v-for="transaction in transactions"
+        :key="transaction.id"
+        :class="transaction.Amount < 0 ? 'minus' : 'plus'"
+      >
         {{ transaction.text }} <span class="">{{ transaction.Amount }}</span
         ><button class="delete-btn">X</button>
       </li>
