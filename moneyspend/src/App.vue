@@ -5,7 +5,7 @@
       <Balance :balance="+balance"></Balance>
       <IncomeExp :income="+income" :expense="expense"></IncomeExp>
       <History :transactions="transactions"></History>
-      <Transaction></Transaction>
+      <Transaction @transactionSubmitted="handleTransaction"></Transaction>
     </div>
   </div>
 </template>
@@ -54,6 +54,24 @@ const expense = computed(() => {
     }, 0)
     .toFixed(2);
 });
+
+//adding new transactions
+
+const handleTransaction = (transactiondata) => {
+  if (text.value || Amount.value) {
+    transactions.value.push({
+      id: generateUniqueId(),
+      text: transactiondata.text,
+      Amount: transactiondata.amount,
+    });
+  }
+};
+
+//generate id
+
+const generateUniqueId = () => {
+  return Math.floor(Math.random() * 1000000);
+};
 </script>
 
 <style></style>
