@@ -96,6 +96,7 @@ h1 {
   box-shadow: var(--box-shadow);
   border-radius: 5px;
   justify-content: space-between;
+  color: white;
 }
 
 .list li.plus {
