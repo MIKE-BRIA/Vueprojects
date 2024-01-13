@@ -34,6 +34,9 @@
 
 <script setup>
 import { ref } from "vue";
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
 
 const text = ref("");
 const amount = ref("");
@@ -43,7 +46,7 @@ const emit = defineEmits(["transactionSubmitted"]);
 
 const onSubmit = () => {
   if (!text.value || !amount.value) {
-    console.log("Please enter a transaction");
+    toast.error("Please enter a transaction");
   }
 
   const transactiondata = {
