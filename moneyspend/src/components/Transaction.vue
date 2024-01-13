@@ -2,10 +2,15 @@
   <div class="submition">
     <h3>Add new transaction</h3>
     <hr />
-    <form action="">
+    <form action="" @submit.prevent="onSubmit">
       <div class="text">
         <label for="">Text</label>
-        <input type="text" placeholder="Enter text ..." />
+        <input
+          type="text"
+          id="text"
+          v-model="text"
+          placeholder="Enter text ..."
+        />
       </div>
 
       <div class="amount">
@@ -14,7 +19,12 @@
           <br />
           (Positive -income, Negative -expense)
         </label>
-        <input type="text" placeholder="Enter Amount" />
+        <input
+          type="text"
+          id="amount"
+          v-model="amount"
+          placeholder="Enter Amount"
+        />
       </div>
 
       <button class="btn">Add Transaction</button>
@@ -22,8 +32,30 @@
   </div>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { ref } from "vue";
+
+const text = ref("");
+const amount = ref("");
+
+//create an emit
+const emit = defineEmits(["transactionSubmitted"]);
+
+const onSubmit = () => {
+  if (!text.value || !amount.value) {
+    console.log("Please enter a transaction");
+  }
+
+  const transactiondata = {
+    text: text.value,
+    amount: parseFloat(amount.value),
+  };
+
+  emit("transactionSubmitted", transactiondata);
+
+  text.value = "";
+  amount.value = "";
+};
 </script>
 
 <style></style>
