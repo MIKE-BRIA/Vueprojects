@@ -6,10 +6,12 @@
       <p>Body: {{ car.body }}</p>
       <p>Price: {{ car.price }}</p>
       <p>Year: {{ car.year }}</p>
+      <router-view />
     </div>
     <div v-else>
       <h1>Car not found</h1>
     </div>
+    <button @click="router.back">Go Back</button>
   </div>
 </template>
 
@@ -17,9 +19,10 @@
 import { ref, onBeforeMount } from "vue";
 import cars from "../data/data.json";
 //get data about the car url
-import { useRoute } from "vue-router";
+import { useRoute, RouterView, useRouter } from "vue-router";
 //get id
 const route = useRoute();
+const router = useRouter();
 const car = ref(null);
 
 const { id } = route.params;
