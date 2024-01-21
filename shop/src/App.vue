@@ -2,9 +2,12 @@
   <main class="bodys">
     <div class="nav">
       <router-link to="/">Home</router-link>
-
-      <input type="text" name="" id="" placeholder="Search product" />
-      <label for="">search</label>
+      <Search></Search>
+      <div class="top">
+        <a href="#">Profile</a>
+        <router-link :to="{ name: 'Balance' }">Balance</router-link>
+        <a href="#">cart</a>
+      </div>
     </div>
 
     <router-view />
@@ -12,6 +15,7 @@
 </template>
 
 <script setup>
+import Search from "./components/Search.vue";
 import { RouterView } from "vue-router";
 </script>
 
