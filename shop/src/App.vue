@@ -4,8 +4,9 @@
       <router-link to="/">Home</router-link>
       <Search></Search>
       <div class="top">
-        <a href="#">Profile</a>
+        <router-link :to="{ name: 'photos' }">Photos</router-link>
         <router-link :to="{ name: 'Balance' }">Balance</router-link>
+        <span class="material-symbols-outlined"> shopping_cart </span>
         <a href="#">cart</a>
       </div>
     </div>
