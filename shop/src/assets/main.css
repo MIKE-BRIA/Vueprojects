@@ -12,6 +12,7 @@ body {
   position: fixed;
   margin-top: 0;
   z-index: 1000;
+  align-items: center;
 }
 
 .nav a {
@@ -21,12 +22,17 @@ body {
   font-weight: bold;
 }
 
+.top a {
+  font-size: 19px;
+  margin: 1rem;
+}
+
 .container {
   max-width: 100%;
   margin: auto;
 }
 .cards {
-  margin-top: 180px;
+  margin-top: 110px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
