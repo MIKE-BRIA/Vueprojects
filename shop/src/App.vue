@@ -4,10 +4,11 @@
       <router-link to="/">Home</router-link>
       <Search></Search>
       <div class="top">
-        <router-link :to="{ name: 'photos' }">Photos</router-link>
+        <router-link :to="{ name: 'photos' }">Emails</router-link>
         <router-link :to="{ name: 'Balance' }">Balance</router-link>
-        <span class="material-symbols-outlined"> shopping_cart </span>
-        <a href="#">cart</a>
+        <!-- <span class="material-symbols-outlined"> shopping_cart </span> -->
+        <router-link :to="{ name: 'news' }">News</router-link>
+        <!-- <a href="#">cart</a> -->
       </div>
     </div>
 
