@@ -45,6 +45,7 @@
   font-weight: 700;
   margin-left: 4rem;
   letter-spacing: 2px;
+  color: rgb(95, 72, 43);
 }
 
 .links ul {
