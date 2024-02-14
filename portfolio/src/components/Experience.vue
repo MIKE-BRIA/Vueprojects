@@ -2,7 +2,7 @@
   <main>
     <div class="head">
       <div>
-        <h1>Experience</h1>
+        <h1 class="top">Experience</h1>
       </div>
       <div class="line"></div>
       <p>
