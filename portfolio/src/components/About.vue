@@ -4,7 +4,7 @@
       <div class="text">
         <div class="head">
           <div>
-            <h1>About me</h1>
+            <h1 class="top">About me</h1>
           </div>
           <div class="line"></div>
         </div>
