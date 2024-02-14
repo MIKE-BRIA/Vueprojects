@@ -23,7 +23,7 @@ import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
 const router = useRouter();
-const news = ref(null);
+const news = ref("");
 
 const { title } = route.params; // Extract title from route parameters
 
