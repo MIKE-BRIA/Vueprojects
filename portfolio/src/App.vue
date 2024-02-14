@@ -5,7 +5,9 @@
       <Me></Me>
       <About></About>
       <Experience></Experience>
+      <Project></Project>
       <Contact></Contact>
+      <Footer></Footer>
     </div>
   </body>
 </template>
@@ -16,6 +18,8 @@ import Me from "./components/Me.vue";
 import About from "./components/About.vue";
 import Experience from "./components/Experience.vue";
 import Contact from "./components/Contact.vue";
+import Footer from "./components/Footer.vue";
+import Project from "./components/Projects.vue";
 </script>
 
 <style>
