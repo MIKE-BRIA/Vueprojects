@@ -1,11 +1,13 @@
 <template>
   <main>
-    <h1>Get in Touch</h1>
+    <h1 class="top">Get in Touch</h1>
     <p>
       I am open to new opportunities ,my inbox is always open and i will always
       get back to you as soon as possible
     </p>
-    <button>say Hello</button>
+    <a href="mailto:brianmichaeladero@gmail.com">
+      <button>say Hello</button>
+    </a>
   </main>
 </template>
 
@@ -14,6 +16,10 @@ export default {};
 </script>
 
 <style scoped>
+main {
+  margin-top: 9rem;
+}
+
 p {
   width: 300px;
   text-align: center;
