@@ -52,6 +52,8 @@ ul {
 li {
   display: flex;
   width: 70%;
+
+  margin: 5px;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.207);
