@@ -1,0 +1,72 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin-top: 3rem;
+}
+
+nav {
+  padding: 30px;
+  background: rgb(184, 183, 183);
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+  text-decoration: none;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+button {
+  padding: 0.8rem;
+  font-size: 1rem;
+}
+
+.logout-btn {
+  padding: 0.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: rgb(199, 139, 139);
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.logo {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.link {
+  margin-right: 2rem;
+}
+
+router-link {
+  margin-right: 3rem;
+}
+
+#auth-alternative {
+  margin-top: 1rem;
+  font-weight: 700;
+}
