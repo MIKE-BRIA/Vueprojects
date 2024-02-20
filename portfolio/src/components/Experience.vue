@@ -30,4 +30,10 @@ p {
   font-size: 1.3rem;
   letter-spacing: 1px;
 }
+
+@media (max-width: 768px) {
+  .head {
+    width: 100%;
+  }
+}
 </style>
