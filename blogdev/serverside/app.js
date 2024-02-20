@@ -6,10 +6,12 @@ const cors = require("cors");
 
 //database
 const db = require("./data/database");
-const path = require("path");
+// const path = require("path");
 
 const app = express();
 app.use(bodyParser.json());
+
+//*cors allows the frontend to request for resources from the server
 const corsOptions = {
   origin: "http://localhost:8080",
 };
@@ -17,7 +19,7 @@ app.use(cors(corsOptions));
 
 const authroute = require("./routes/auth.routes");
 
-app.set("views", path.join(__dirname, "../clentside/views"));
+// app.set("views", path.join(__dirname, "../clentside/views"));
 
 app.use(authroute);
 
