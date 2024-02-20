@@ -73,8 +73,13 @@ async function login(req, res) {
     return res.status(404).send({ message: "User not found" });
   }
 
+  //* adding user data to session and storing session to database
+  req.session.user = { id: existingUser._id, email: existingUser.email };
+  req.session.isAuthenticated = true;
+  req.session.save(() => {
+    res.status(201).send("login successful");
+  });
   // console.log("User is authenticated");
-  res.status(201).send("login successful");
 }
 
 module.exports = {
