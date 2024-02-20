@@ -9,7 +9,7 @@
           id="fullname"
           name="fullname"
           placeholder="fullname"
-          v-model="fullname"
+          v-model="Userdata.fullname"
           required
         />
       </div>
@@ -21,7 +21,7 @@
           id="email"
           name="email"
           placeholder="Email"
-          v-model="email"
+          v-model="Userdata.email"
           required
         />
       </div>
@@ -33,7 +33,7 @@
           id="confirm-email"
           name="confirm-email"
           placeholder="confirm email"
-          v-model="confirmEmail"
+          v-model="Userdata.confirmEmail"
           required
         />
       </div>
@@ -45,7 +45,7 @@
           id="password"
           name="password"
           placeholder="password"
-          v-model="password"
+          v-model="Userdata.password"
           required
         />
       </div>
@@ -58,61 +58,34 @@
 </template>
 
 <script>
-import AuthService from "@/services/AuthenticationService";
-import Api from "@/services/Api";
+import axios from "axios";
+import router from "@/router/index.js"; // Adjust the path based on your project structure
 
 export default {
   data() {
     return {
-      fullname: "",
-      email: "",
-      confirmEmail: "",
-      password: "",
+      Userdata: {
+        fullname: "",
+        email: "",
+        confirmEmail: "",
+        password: "",
+      },
     };
   },
-
   methods: {
-    async signup() {
-      try {
-        const userData = {
-          fullname: this.fullname,
-          email: this.email,
-          confirmEmail: this.confirmEmail,
-          password: this.password,
-          // other form field values
-        };
-        const response = await AuthService.signup(userData);
-        console.log("Signup successful:", response);
-        // Optionally, perform any additional actions after successful signup
-      } catch (error) {
-        console.error("Signup failed:", error.message);
-        // Optionally, handle signup failure
-      }
+    //handling the signup form of a user
+    signup() {
+      axios
+        .post("http://localhost:3000/signup", this.Userdata)
+        .then((response) => {
+          console.log(response);
+          // Redirect to the login page
+          router.push({ name: "login" }); // Assuming 'login' is the name of your login route
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
-
-    // methods: {
-    //   async signup() {
-    //     try {
-    //       const response = await AuthService.signup({
-    //         fullname: this.fullname,
-    //         email: this.email,
-    //         confirmEmail: this.confirmEmail,
-    //         password: this.password,
-    //       });
-    //       console.log("Signup response:", response.data);
-    //     } catch (error) {
-    //       console.error("Signup error:", error);
-    //     }
-    //   },
-
-    // async fetchData() {
-    //   try {
-    //     const response = await Api().post("signup", credentials); // Make a GET request using the Api instance
-    //     console.log("Data from server:", response.data);
-    //   } catch (error) {
-    //     console.error("Error fetching data:", error);
-    //   }
-    // },
   },
 };
 </script>
