@@ -20,6 +20,11 @@
         <button class="resume-button">
           <p>Resume</p>
         </button>
+        <div class="toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
       </div>
     </div>
   </main>
@@ -40,10 +45,25 @@
   align-items: center;
 }
 
+.toggle {
+  /* background: white; */
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.bar {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: background-color 0.3s ease;
+}
+
 .logo {
   font-size: 3rem;
   font-weight: 700;
-  margin-left: 4rem;
+  margin-left: 2rem;
   letter-spacing: 2px;
   color: rgb(95, 72, 43);
 }
@@ -87,5 +107,11 @@ a.active {
 
 p {
   margin: 0;
+}
+
+@media (max-width: 767px) {
+  .links {
+    display: none;
+  }
 }
 </style>
