@@ -6,7 +6,6 @@
           <div>
             <h1 class="top">About me</h1>
           </div>
-          <div class="line"></div>
         </div>
 
         <p>
@@ -60,18 +59,6 @@ export default {};
   margin-top: 9rem;
 }
 
-.head h1:after {
-  background-color: aliceblue;
-  display: block;
-  width: 120px;
-  height: 2px;
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 50%;
-  z-index: -1;
-}
-
 img {
   width: 19rem;
   margin-top: 5rem;
@@ -109,5 +96,11 @@ li {
   font-size: 1.4rem;
   list-style-type: disc;
   text-align: left;
+}
+
+@media (max-width: 768px) {
+  .main {
+    display: block;
+  }
 }
 </style>
