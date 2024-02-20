@@ -1,25 +1,83 @@
 const db = require("../data/database");
+//*for harshing password
+const bcrypt = require("bcryptjs");
 
-//signup post request
+//!signup post request function
 async function signup(req, res) {
-  //entered data
-  const enteredData = {
-    fullname: req.body.fullname,
-    email: req.body.email,
-    confirmEmail: req.body["confirm-email"],
-    password: req.body.password,
-  };
+  //*userdata
+  const userData = req.body;
+  const fullname = userData.fullname;
+  const email = userData.email;
+  const confirmEmail = userData.confirmEmail;
+  const password = userData.password;
+
+  const trimpassword = password.trim();
+  if (
+    email !== confirmEmail ||
+    trimpassword.length < 6 ||
+    !email.includes("@")
+  ) {
+    return res.status(403).send({ message: "Validation failed" });
+  }
+
+  //*checking if email already exists in our database
+  const existingUser = await db
+    .getDb()
+    .collection("users")
+    .findOne({ email: email });
+
+  if (existingUser) {
+    console.log("Email already exists");
+    return res.status(403).send({ message: "user already exists" });
+  }
+
+  //*hashing the password
+  const hashedpassword = await bcrypt.hash(trimpassword, 12);
 
   const user = {
-    email: enteredData["email"],
-    password: enteredData["password"],
+    fullname: fullname,
+    email: email,
+    password: hashedpassword,
   };
 
+  //*store to database
   await db.getDb().collection("users").insertOne(user);
 
-  res.redirect("/login");
+  res.status(201).send("Signup successful");
+}
+
+//!login post request function
+async function login(req, res) {
+  //*login credentials
+  const userData = req.body;
+  const email = userData.email;
+  const password = userData.password;
+
+  //*find user with same entered email
+  const existingUser = await db
+    .getDb()
+    .collection("users")
+    .findOne({ email: email });
+
+  if (!existingUser) {
+    return res.status(404).send({ message: "User not found" });
+  }
+
+  const passwordsAreEqual = await bcrypt.compare(
+    password,
+    existingUser.password
+  );
+
+  if (!passwordsAreEqual) {
+    console.log("passwords are not equal");
+    return res.status(404).send({ message: "User not found" });
+  }
+
+  // console.log("User is authenticated");
+  res.status(201).send("login successful");
 }
 
 module.exports = {
   signup: signup,
+  login: login,
 };
