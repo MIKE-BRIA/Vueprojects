@@ -18,4 +18,10 @@ export default {};
 main {
   margin-top: 9rem;
 }
+
+@media (max-width: 768px) {
+  .head {
+    width: 100%;
+  }
+}
 </style>
