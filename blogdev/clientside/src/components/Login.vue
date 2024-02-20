@@ -1,7 +1,7 @@
 <template>
   <main>
     <h1>Login</h1>
-    <form action="">
+    <form action="/login" method="POST" @submit.prevent="login">
       <div class="form-control">
         <label for="email">Email</label>
         <input
@@ -9,6 +9,7 @@
           id="email"
           name="email"
           placeholder="email"
+          v-model="userInput.email"
           required
         />
       </div>
@@ -20,10 +21,11 @@
           id="password"
           name="password"
           placeholder="password"
+          v-model="userInput.password"
           required
         />
       </div>
-      <button>Login</button>
+      <button type="submit">Login</button>
     </form>
     <div id="auth-alternative">
       <a class="btn btn-alt" href="/signup">Create User</a>
@@ -32,7 +34,37 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+import router from "@/router/index.js";
+
+export default {
+  data() {
+    return {
+      userInput: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+
+  methods: {
+    login() {
+      axios
+        .post("http://localhost:3000/login", this.userInput)
+        .then((response) => {
+          console.log(response);
+          router.push({ name: "home" });
+        })
+        .catch((error) => {
+          if (error.response?.status === 404) {
+            this.$router.push({ name: "login" });
+          } else {
+            console.error(error);
+          }
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>
