@@ -38,3 +38,9 @@ p {
 .top {
   color: white;
 }
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+}
