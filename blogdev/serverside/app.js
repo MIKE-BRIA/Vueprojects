@@ -3,6 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 //enables sharing of resourses btn client and server
 const cors = require("cors");
+const session = require("express-session");
+const Sessionconfig = require("./config/session");
 
 //database
 const db = require("./data/database");
@@ -18,6 +20,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 const authroute = require("./routes/auth.routes");
+
+const sessionconfig = Sessionconfig();
+app.use(session(sessionconfig));
 
 // app.set("views", path.join(__dirname, "../clentside/views"));
 
