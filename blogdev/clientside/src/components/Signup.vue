@@ -80,7 +80,7 @@ export default {
         .then((response) => {
           console.log(response);
           // Redirect to the login page
-          router.push({ name: "login" }); // Assuming 'login' is the name of your login route
+          router.push({ name: "login" });
         })
         .catch((error) => {
           console.error(error);
