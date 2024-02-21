@@ -23,7 +23,9 @@ function sessionConfig() {
     saveUninitialized: false,
     store: sessionStore(),
     cookie: {
-      maxAge: 3600 * 24 * 60 * 60 * 1000,
+      maxAge: 2 * 24 * 60 * 60 * 1000,
+      secure: process.env.NODE_ENV === "production", // true in production
+      sameSite: "strict",
     },
   };
 }
