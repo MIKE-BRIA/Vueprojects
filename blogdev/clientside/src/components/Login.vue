@@ -53,7 +53,7 @@ export default {
         .post("http://localhost:3000/login", this.userInput)
         .then((response) => {
           console.log(response);
-          router.push({ name: "home" });
+          router.push({ name: "admin" });
         })
         .catch((error) => {
           if (error.response?.status === 404) {
