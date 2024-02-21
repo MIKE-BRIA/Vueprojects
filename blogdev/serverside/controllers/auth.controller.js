@@ -1,6 +1,7 @@
 const db = require("../data/database");
 //*for harshing password
 const bcrypt = require("bcryptjs");
+const getAuthsession = require("../middleware/authmiddle");
 
 //!signup post request function
 async function signup(req, res) {
@@ -75,14 +76,25 @@ async function login(req, res) {
 
   //* adding user data to session and storing session to database
   req.session.user = { id: existingUser._id, email: existingUser.email };
-  req.session.isAuthenticated = true;
+  req.session.isAuth = true;
+
   req.session.save(() => {
     res.status(201).send("login successful");
   });
   // console.log("User is authenticated");
 }
 
+//! checks if user is authenticated in the sessiom
+async function checkauth(req, res) {
+  if (req.session.isAuth && req.session.user) {
+    res.json({ isAuth: true, user: req.session.user });
+  } else {
+    res.json({ isAuth: false, user: req.session.user });
+  }
+}
+
 module.exports = {
   signup: signup,
   login: login,
+  checkauth: checkauth,
 };
